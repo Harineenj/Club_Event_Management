@@ -26,5 +26,9 @@ app.use("/api/events", eventRoutes);
 app.use("/api/uploads", express.static("uploads"));
 
 
+app.get("/", (req, res) => {
+    res.send("Backend is running!");
+});
+
  const port = process.env.PORT;
  app.listen(port,()=>console.log(`server is running on the port ${port}`))
