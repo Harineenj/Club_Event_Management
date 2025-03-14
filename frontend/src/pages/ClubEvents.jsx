@@ -5,7 +5,7 @@ const ClubEvents = () => {
     const [events, setEvents] = useState(null); 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const BASE_URL = "http://localhost:5004/api"; 
+    const BASE_URL = "https://club-event-management.onrender.com"; 
 
     useEffect(() => {
         const fetchEvents = async () => {

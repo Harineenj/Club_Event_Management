@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL: "http://localhost:5004/api", 
+    baseURL: "https://club-event-management.onrender.com", 
     headers: {
         "Content-Type": "application/json",
     },
