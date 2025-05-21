@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api";
 import StudentDashboard from "./StudentDashboard";
-import AdminDashboard from "./AdminDashboard";
 import ClubHeadDashboard from "./ClubHeadDashboard";
 
 const Dashboard = () => {
@@ -34,7 +33,6 @@ const Dashboard = () => {
                 <div className="mt-6">
                     {user.role === "student" && <StudentDashboard />}
                     {user.role === "club_head" && <ClubHeadDashboard />}
-                    {user.role === "admin" && <AdminDashboard />}
                 </div>
             </div>
         </div>

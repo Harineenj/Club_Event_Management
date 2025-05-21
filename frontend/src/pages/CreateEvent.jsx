@@ -56,7 +56,7 @@ const CreateEvent = () => {
             });
 
             alert("Event Created Successfully!");
-            navigate("/club_events");
+            navigate("clubhead/club_events");
         } catch (err) {
             setError(err.response?.data?.message || "Something went wrong");
         } finally {
@@ -148,7 +148,7 @@ const CreateEvent = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-blue-500 text-white py-2 px-4 rounded mt-4"
+                        className="w-full bg-blue-500 text-black py-2 px-4 rounded mt-4"
                         disabled={loading}
                     >
                         {loading ? "Creating..." : "Create Event"}

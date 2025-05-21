@@ -1,10 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
 
 const StudentDashboard = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+    const navigate = useNavigate();
+    
+    const handleLogout = () => {
+        // Remove the authentication token from localStorage
+        localStorage.removeItem("token");
+        
+        // Optional: Remove any other user-related data
+        localStorage.removeItem("userId");
+        localStorage.removeItem("username");
+        localStorage.removeItem("role");
+        
+        // Redirect to login page
+        navigate("/login");
+    };
+    
     return (
         <div className="flex h-screen">
             {/* Sidebar */}
@@ -14,12 +28,20 @@ const StudentDashboard = () => {
                 </button>
                 <h2 className="text-2xl font-bold mb-6">🎓 Dashboard</h2>
                 <nav className="space-y-4">
-                    <Link to="/view_events" className="block px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600">
+                    <Link to="/view_events" className="block px-4 py-2 test-black rounded-lg bg-gray-700 hover:bg-gray-600">
                         📅 View Events
                     </Link>
-                    <Link to="/registered_events" className="block px-4 py-2 rounded-lg bg-gray-700 hover:bg-gray-600">
-                        ✅ My Registered Events
-                    </Link>
+                    
+                    {/* Logout button at the bottom of sidebar */}
+                    <div className="absolute bottom-8 left-0 w-full px-5">
+                        <button 
+                            onClick={handleLogout}
+                            className="flex items-center justify-center w-full px-4 py-2 mt-6 text-sm font-medium text-black transition-colors duration-200 rounded-lg bg-red-600 hover:bg-red-700"
+                        >
+                            <LogOut className="w-5 h-5 mr-2" />
+                            Logout
+                        </button>
+                    </div>
                 </nav>
             </div>
             

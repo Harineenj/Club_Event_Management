@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: frontend-monitor
+  namespace: mern-app
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  endpoints:
+  - port: metrics
+    interval: 15s
+  namespaceSelector:
+    matchNames:
+    - mern-app

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: mern-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: frontend
+        image: harinee11/mern-frontend:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: REACT_APP_API_URL
+          value: "/api"
+      - name: metrics-exporter
+        image: prom/node-exporter:latest
+        ports:
+        - containerPort: 9090
+          name: metrics
+        args:
+        - "--web.listen-address=:9090"
+        - "--collector.disable-defaults"
+        - "--collector.filesystem"
+        - "--collector.meminfo"
+        - "--collector.cpu"

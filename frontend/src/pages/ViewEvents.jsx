@@ -6,6 +6,9 @@ const ViewEvents = () => {
     const [loading, setLoading] = useState(true);
     const [userId, setUserId] = useState(""); 
 
+   const BASE_URL = "https://club-event-management.onrender.com/api"; 
+
+
     useEffect(() => {
          API.get("/events/all")
             .then((response) => {
@@ -47,7 +50,7 @@ const ViewEvents = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {events.map((event) => (
                         <div key={event._id} className="bg-white shadow-lg rounded-xl overflow-hidden transform hover:scale-105 transition duration-300">
-                            <img src={event.poster} alt={event.title} className="w-full h-48 object-cover" />
+                            <img src={`${BASE_URL}${event.poster}`} alt={event.title} className="w-full h-48 object-cover" />
                             <div className="p-5">
                                 <h3 className="text-2xl font-semibold text-gray-800">{event.title}</h3>
                                 <p className="text-gray-600 mt-2">{event.description}</p>
